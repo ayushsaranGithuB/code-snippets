@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import hljs from "highlight.js";
+import hljs from "highlight.js/lib/common";
+
 
 const ListSnippets = ({ snippets }) => {
     const copy = (id) => {
