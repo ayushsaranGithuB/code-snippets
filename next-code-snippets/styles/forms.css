@@ -1,0 +1,61 @@
+/* INPUT FORM */
+
+.input-form {
+    width: 100%;
+    max-width: 80ch;
+    margin: 0 auto;
+}
+
+.input-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 0;
+    row-gap: 20px;
+}
+
+.input-form form label {
+    text-align: left;
+    display: block;
+    width: 100%;
+}
+
+
+.input-form form input[type="text"],
+.input-form form input[type="email"],
+.input-form form input[type="password"],
+.input-form form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--highlightColor);
+    background: var(--background);
+    border-radius: 6px;
+    font-size: 1.2rem;
+    color: var(--foreground);
+}
+
+.input-form button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: var(--highlightColor);
+    color: var(--background);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Login form */
+#login-form {
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.input-form form input.error {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "next-code-snippets",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "appwrite": "^15.0.0",
+    "highlight.js": "^11.10.0",
+    "next": "14.2.5",
+    "node-appwrite": "^13.0.0",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
