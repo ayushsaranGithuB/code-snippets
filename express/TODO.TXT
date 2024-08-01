@@ -1,3 +1,0 @@
-Date formats on Created updated
-Toast Notifications on Add/Edit
-Auth and Login
