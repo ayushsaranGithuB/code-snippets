@@ -6,14 +6,13 @@ export default function Component() {
         console.log(session)
         return (
             <>
-                <img src={session.user.image} alt="" className="avatar" height={20} />
-                Signed in as {session.user.name} <button onClick={() => signOut()}>Sign out</button>
+                <img src={session.user.image} alt="avatar" title={'Signed in as: ' + session.user.name} className="avatar" height={20} />
+                <button onClick={() => signOut()}>Sign out</button>
             </>
         )
     }
     return (
         <>
-            Not signed in <br />
             <button onClick={() => signIn()}>Sign in</button>
         </>
     )

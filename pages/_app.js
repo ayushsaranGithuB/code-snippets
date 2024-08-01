@@ -3,6 +3,7 @@ import "@/styles/atom-one-dark.css";
 import "@/styles/forms.css";
 import { SessionProvider } from "next-auth/react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function App({
   Component,
@@ -12,6 +13,7 @@ export default function App({
     <SessionProvider session={session}>
       <Header />
       <Component {...pageProps} />
+      <Footer />
     </SessionProvider>
   );
 }

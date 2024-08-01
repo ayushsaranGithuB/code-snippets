@@ -1,5 +1,3 @@
-import LoginBtn from './LoginBtn';
-
 const Header = () => {
     return (
         <>
@@ -11,9 +9,6 @@ const Header = () => {
                     <ul>
                         <li>
                             <a href="/create">(+) New_Snippet</a>
-                        </li>
-                        <li>
-                            <LoginBtn />
                         </li>
                     </ul>
                 </nav>

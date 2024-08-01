@@ -1,4 +1,4 @@
-import hljs from 'highlight.js';
+import LoginBtn from './LoginBtn';
 const Footer = () => {
 
     // hljs.highlightAll();
@@ -10,6 +10,7 @@ const Footer = () => {
     return (
         <footer>
             <p>Code Snippets. &copy; 2024</p>
+            <LoginBtn />
         </footer>
     );
 }
