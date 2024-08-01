@@ -1,20 +1,24 @@
 <%- include('partial_header', {title:'Edit Snippet'}) %>
 
-    <style>
-        @import url('/forms.css');
-    </style>
+<style>
+	@import url('/forms.css');
+</style>
 
-    <!-- Create a New Snippet Form -->
-    <div class="input-form">
-        <form action="" method="POST" name="create-form" id="create-form">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" required value="<%= snippet.title %>" />
-            <label for="code">Code Snippet</label>
-            <textarea name="snippet" id="code" required cols="40" rows="10"><%= snippet.snippet %></textarea>
-            <label for="tags">Tags</label>
-            <input type="text" name="tags" id="tags" required value="<%= snippet.tags %>">
-            <button type="submit">Update</button>
-        </form>
-    </div>
+<!-- Create a New Snippet Form -->
+<div class="input-form">
+	<form action="" method="POST" name="create-form" id="create-form">
+		<label for="title">Title</label>
+		<input type="text" name="title" id="title" required value="<%= snippet.title %>" />
+		<label for="code">Code Snippet</label>
+		<textarea name="snippet" id="code" required cols="40" rows="10"><%= snippet.snippet %></textarea>
+		<label for="tags">Tags</label>
+		<input type="text" name="tags" id="tags" required value="<%= snippet.tags %>">
+		<button type="submit">Update</button>
+	</form>
+</div>
 
-    <%- include('partial_footer') %>
+<p>
+	DELETE THIS SNIPPET
+</p>
+
+<%- include('partial_footer') %>
