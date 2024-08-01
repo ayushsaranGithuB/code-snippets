@@ -1,8 +1,19 @@
 import { useEffect } from "react";
 import hljs from "highlight.js/lib/common";
+import Loader from "./Loader";
 
 
 const ListSnippets = ({ snippets }) => {
+
+    if (!snippets) {
+        return <Loader />;
+    }
+
+    if (snippets.length === 0) {
+        return <p>No snippets found</p>;
+    }
+
+
     const copy = (id) => {
         // Implement the copy functionality here
         const code = document.getElementById(id).querySelector("code").innerText;

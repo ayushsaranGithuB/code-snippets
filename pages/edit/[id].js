@@ -1,4 +1,5 @@
 // Edit Snippet Page
+import Loader from "@/components/Loader";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import { useRouter } from "next/router";
@@ -6,6 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function EditPage() {
   const { data: session } = useSession();
+  const [Loading, setLoading] = useState(true);
 
   const router = useRouter();
   const { id } = router.query;
@@ -17,6 +19,7 @@ export default function EditPage() {
         .then((res) => res.json())
         .then((data) => {
           setSnippet(data);
+          setLoading(false);
         });
     }
   }, [id]);
@@ -86,6 +89,10 @@ export default function EditPage() {
         <p>Sorry, you do not have permission to edit snippets</p>
       </>
     );
+  }
+
+  if (Loading) {
+    return <Loader />;
   }
 
   return (

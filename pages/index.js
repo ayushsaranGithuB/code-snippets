@@ -2,14 +2,18 @@ import ListSnippets from "@/components/ListSnippets";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import SearchBox from "@/components/SearchBox";
+import Loader from "@/components/Loader";
 
 export default function Home() {
   const [snippets, setSnippets] = useState([]);
+  const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/snippets")
       .then((res) => res.json())
       .then((data) => setSnippets(data));
+
+    setLoading(false);
   }, []);
 
   return (
@@ -19,7 +23,7 @@ export default function Home() {
       </Head>
       <SearchBox />
       {snippets.length === 0 ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <ListSnippets snippets={snippets} />
       )}

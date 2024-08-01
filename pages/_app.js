@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import "@/styles/atom-one-dark.css";
 import "@/styles/forms.css";
+import "@/styles/loader.css";
+
 import { SessionProvider } from "next-auth/react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
