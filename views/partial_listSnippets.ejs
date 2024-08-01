@@ -1,0 +1,28 @@
+<!-- List all data in snippets variable -->
+<ul class="posts-list">
+    <% for (let snippet of snippets) { %>
+        <li class="post" id="<%= snippet.$id %>">
+            <h2 class="title">
+                >_ <%= snippet.title %>
+            </h2>
+
+            <p class="meta">
+                <% if(snippet.updated> snippet.created) {
+                    %> Updated: <%= new Date(snippet.updated).toLocaleDateString('en-IN', { day: 'numeric' ,
+                        month: 'long' , year: 'numeric' }) %>
+                        <% } else { %> Created: <%= snippet.created %>
+                                <% } %>
+            </p>
+
+            <pre><button onclick="copy('<%= snippet.$id %>')">copy</button><code><%= snippet.snippet %></code></pre>
+
+            <p class="tags">
+                <% for(let tag of snippet.tags) { %>
+                    <a href='/tags/<%= tag %>'>
+                        #<%= tag %>
+                    </a>
+                    <% } %>
+            </p>
+        </li>
+        <% } %>
+</ul>

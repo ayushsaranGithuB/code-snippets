@@ -1,0 +1,148 @@
+:root {
+  --foreground: #eee;
+  --background: #1e2522;
+  --linkColor: #8ee244;
+  --highlightColor: #c4e835;
+  --fontPrimary: "Share Tech Mono", monospace;
+  --fontSecondary: "Roboto Slab", monospace;
+  --fontMono: "Silkscreen", monospace;
+  --backgroundDarker: #1a201d6d;
+  --backgroundLighter: #33413ac3
+}
+
+body {
+  background-color: #1e2522;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fontPrimary);
+  color: var(--foreground);
+  font-size: 16px
+}
+
+
+a {
+  color: var(--linkColor);
+  text-decoration: none
+}
+
+a:visited {
+  opacity: .8
+}
+
+a:hover {
+  color: var(--highlightColor)
+}
+
+
+#container {
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  max-width: 1000px;
+  min-height: 78vh;
+}
+
+header {}
+
+header a {
+  color: inherit;
+}
+
+header nav {
+  color: var(--background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--linkColor);
+  border-radius: 6px;
+  height: 40px;
+  padding: 0 30px;
+}
+
+header nav .logo {}
+
+header nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 0 auto;
+  column-gap: 15px;
+}
+
+/*  SEARCH FORM  */
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px 0;
+}
+
+#search-form input[type="text"] {
+  padding: 0px 10px 0px 80px;
+  border-radius: 16px;
+  border: 1px solid #475243;
+  width: 100%;
+  max-width: 400px;
+  background: url(/search-icon.svg) no-repeat 10px center;
+  background-size: 60px;
+  height: 80px;
+  font-size: 1.5em;
+  color: var(--foreground);
+}
+
+/*  SNIPPETS  */
+
+ul.posts-list {
+  padding: 0;
+  margin: 0;
+}
+
+.post {
+  box-shadow: 0 0 5px 1px #446c2126;
+  border-radius: 4px;
+  margin: 10px 0;
+  padding: 20px 0 20px 30px;
+  border: 1px solid #475243;
+  border-radius: 4px;
+  list-style: none;
+}
+
+.post h2 {
+  margin: 0;
+  font-size: 1.6em;
+}
+
+.post p.meta {
+  margin: 0.5em 0;
+  font-size: 0.8em;
+  opacity: 0.5;
+}
+
+pre {
+  background: #282c34;
+  padding: 1em;
+  border-radius: 10px;
+  font-size: .85em;
+  overflow: auto;
+  width: max-content;
+  position: relative;
+}
+
+pre button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #475243;
+  color: #eee;
+  cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  margin: 80px 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid #475243;
+}
