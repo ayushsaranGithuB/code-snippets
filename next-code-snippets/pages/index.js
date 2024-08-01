@@ -18,7 +18,11 @@ export default function Home() {
         <title>Code Snippets - Home</title>
       </Head>
       <SearchBox />
-      <ListSnippets snippets={snippets} />
+      {snippets.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        <ListSnippets snippets={snippets} />
+      )}
     </>
   );
 }
