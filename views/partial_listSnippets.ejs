@@ -1,32 +1,31 @@
 <!-- List all data in snippets variable -->
 <ul class="posts-list">
-    <% for (let snippet of snippets) { %>
-        <li class="post" id="<%= snippet.$id %>">
-            <h2 class="title">
-                >_ <%= snippet.title %>
-            </h2>
+	<% for (let snippet of snippets) { %>
+	<li class="post" id="<%= snippet.$id %>">
+		<h2 class="title">
+			<%= snippet.title %>
+			<a class="action" href="/edit/<%= snippet.$id %>">[Edit]</a>
+		</h2>
 
-            <p class="meta">
-                <% if(snippet.$updatedAt> snippet.$createdAt) {
-                    %> Updated: <%= new Date(snippet.$updatedAt).toLocaleDateString('en-IN', { day: 'numeric' ,
-                        month: 'long' , year: 'numeric' }) %>
-                        <% } else { %> Created: <%= snippet.$createdAt %>
-                                <% } %>
-            </p>
+		<pre><button onclick="copy('<%= snippet.$id %>')">copy</button><code><%= snippet.snippet %></code></pre>
 
-            <pre><button onclick="copy('<%= snippet.$id %>')">copy</button><code><%= snippet.snippet %></code></pre>
+		<div class="meta">
+			<p class="date">
+				<% if(snippet.$updatedAt> snippet.$createdAt) {
+                        %> Updated: <%= new Date(snippet.$updatedAt).toLocaleDateString('en-IN', { day: 'numeric' ,
+                            month: 'long' , year: 'numeric' }) %>
+				<% } else { %> Created: <%= snippet.$createdAt %>
+				<% } %>
+			</p>
+			<p class="tags">
+				<% for(let tag of snippet.tags) { %>
+				<a href='/search?keyword=<%= tag %>'>
+					#<%= tag %>
+				</a>
+				<% } %>
+			</p>
+		</div>
 
-            <p class="tags">
-                <% for(let tag of snippet.tags) { %>
-                    <a href='/tags/<%= tag %>'>
-                        #<%= tag %>
-                    </a>
-                    <% } %>
-            </p>
-
-            <p class="actions">
-                <a href="/edit/<%= snippet.$id %>">Edit</a>
-            </p>
-        </li>
-        <% } %>
+	</li>
+	<% } %>
 </ul>
