@@ -1,3 +1,7 @@
+// admin only page
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "./auth/[...nextauth]";
+
 // import appwrite
 const sdk = require("node-appwrite");
 const { Query, ID } = require("node-appwrite");
@@ -17,6 +21,13 @@ client
 const databases = new sdk.Databases(client);
 
 export default async function handler(req, res) {
+  // admin only
+  const session = await getServerSession(req, res, authOptions);
+  if (!session || session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+
   const { title, snippet, tags } = req.body;
 
   // split tags by comma into an array

@@ -22,30 +22,24 @@ const databases = new sdk.Databases(client);
 export default async function handler(req, res) {
   // admin only
   const session = await getServerSession(req, res, authOptions);
-  if (!session || session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-    res.status(401).json({ error: "Unauthorized" });
+  
+  if (!session) {
+    res.status(401).json({ error: "Unauthorized: Must be logged In" });
+    return;
+  }
+  if (session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+    res.status(401).json({ error: "Unauthorized: Must be an admin" });
     return;
   }
 
-  const { title, snippet, tags, id } = req.body;
+  const { id } = req.body;
 
-  // split tags by comma into an array
-  const tagArray = tags.split(",");
-  const tagsTrimmed = tagArray.map((tag) => tag.trim());
-  // remove empty tags
-  const tagsFiltered = tagsTrimmed.filter((tag) => tag !== "");
-
-  async function updateSnippet() {
-    const response = await databases.updateDocument("public", "snippets", id, {
-      title: title,
-      snippet: snippet,
-      tags: tagsFiltered,
-    });
-
+  async function deleteSnippet() {
+    const response = await databases.deleteDocument("public", "snippets", id);
     return response;
   }
 
-  const response = await updateSnippet();
+  const response = await deleteSnippet();
   // console.log(response);
 
   res.status(200).json(response);

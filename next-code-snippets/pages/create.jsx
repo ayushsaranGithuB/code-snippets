@@ -1,4 +1,26 @@
+import { useSession, signIn, signOut } from "next-auth/react"
+import { useRouter } from "next/router";
+
 const CreatePage = () => {
+    const router = useRouter();
+
+    const { data: session } = useSession()
+    if (!session) {
+        return (
+            <>
+                <p>Please sign in to add a snippet</p>
+                <button onClick={() => signIn()}>Sign in</button>
+            </>
+        )
+    }
+
+    if (session.user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+        return (
+            <>
+                <p>Sorry, you do not have permission to add a snippet</p>
+            </>
+        )
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,9 +41,8 @@ const CreatePage = () => {
         });
 
         if (response.ok) {
-            form.reset();
             alert('Snippet added successfully');
-            console.log(data);
+            router.push('/');
         } else {
             console.error('Error:', response.statusText);
         }
