@@ -2,14 +2,16 @@
 const sdk = require("node-appwrite");
 const client = new sdk.Client();
 // import Query
-const { Query } = require("node-appwrite");
+const { Query, ID } = require("node-appwrite");
+
+// import dotenv
+require("dotenv").config();
+// console.log(process.env.APPWRITE_API_KEY);
 
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
   .setProject("66a61090003ce158d647")
-  .setKey(
-    "ba4b15fe563644bfdc7c24cb6bcddba10feb9f534a781c70a650b3c21c44d7b4fecd40f7e165af24855225a65292ff01461bab27d6a878398ae645864b00dd4a03b6bf536aac72b71def8db6b664e12f4e5eb55201c63f29f212a8323114345088d8c78bc9d4f95683b78673521b7130cc2b5fff7631a6b5ba9de3efee11acd3"
-  );
+  .setKey(process.env.APPWRITE_API_KEY);
 
 const databases = new sdk.Databases(client);
 
@@ -27,6 +29,8 @@ const port = 3000;
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+// Middleware to parse URL-encoded data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.get("/", async (req, res) => {
@@ -38,6 +42,21 @@ app.get("/", async (req, res) => {
   const response = await getSnippets();
 
   res.render("home", { snippets: response.documents });
+});
+
+// View a snippet
+app.get("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  async function getSnippet() {
+    const response = await databases.getDocument("public", "snippets", id);
+
+    return response;
+  }
+
+  const response = await getSnippet();
+
+  res.render("home", { snippets: [response] });
 });
 
 app.get("/search", async (req, res) => {
@@ -57,6 +76,82 @@ app.get("/search", async (req, res) => {
   const results = await searchSnippets();
 
   res.render("search", { snippets: results.documents, keyword: keyword });
+});
+
+// Create a new snippet
+app.get("/create", (req, res) => {
+  res.render("create");
+});
+
+app.post("/create", async (req, res) => {
+  const { title, snippet, tags } = req.body;
+
+  // split tags by comma into an array
+  const tagArray = tags.split(",");
+  const tagsTrimmed = tagArray.map((tag) => tag.trim());
+  // remove empty tags
+  const tagsFiltered = tagsTrimmed.filter((tag) => tag !== "");
+
+  async function createSnippet() {
+    const response = await databases.createDocument(
+      "public",
+      "snippets",
+      ID.unique(),
+      {
+        title: title,
+        snippet: snippet,
+        tags: tagsFiltered,
+      }
+    );
+
+    return response;
+  }
+
+  const response = await createSnippet();
+  console.log(response);
+
+  res.redirect("/");
+});
+
+// Edit a snippet
+app.get("/edit/:id", async (req, res) => {
+  const id = req.params.id;
+
+  async function getSnippet() {
+    const response = await databases.getDocument("public", "snippets", id);
+
+    return response;
+  }
+
+  const snippet = await getSnippet();
+
+  res.render("edit", { snippet: snippet });
+});
+
+app.post("/edit/:id", async (req, res) => {
+  const id = req.params.id;
+  const { title, snippet, tags } = req.body;
+
+  // split tags by comma into an array
+  const tagArray = tags.split(",");
+  const tagsTrimmed = tagArray.map((tag) => tag.trim());
+  // remove empty tags
+  const tagsFiltered = tagsTrimmed.filter((tag) => tag !== "");
+
+  async function updateSnippet() {
+    const response = await databases.updateDocument("public", "snippets", id, {
+      title: title,
+      snippet: snippet,
+      tags: tagsFiltered,
+    });
+
+    return response;
+  }
+
+  const response = await updateSnippet();
+  console.log(response);
+
+  res.redirect("/" + id);
 });
 
 // listen on port

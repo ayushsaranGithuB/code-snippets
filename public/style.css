@@ -127,6 +127,7 @@ pre {
   overflow: auto;
   width: max-content;
   position: relative;
+  min-width: 40ch;
 }
 
 pre button {

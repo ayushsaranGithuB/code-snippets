@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partial_header', {title:'< /> Code Snippets'}) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Snippets</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/atom-one-dark.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-</head>
+<%- include('partial_searchForm' , {keyword:''}) %>
 
+    <%- include('partial_listSnippets' , {snippets:snippets} ) %>
 
-<%- include('partial_header') %>
-
-    <%- include('partial_searchForm' , {keyword:''}) %>
-
-        <%- include('partial_listSnippets' , {snippets:snippets} ) %>
-
-            <%- include('partial_footer') %>
-
-</html>
+        <%- include('partial_footer') %>

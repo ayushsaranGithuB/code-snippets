@@ -7,10 +7,10 @@
             </h2>
 
             <p class="meta">
-                <% if(snippet.updated> snippet.created) {
-                    %> Updated: <%= new Date(snippet.updated).toLocaleDateString('en-IN', { day: 'numeric' ,
+                <% if(snippet.$updatedAt> snippet.$createdAt) {
+                    %> Updated: <%= new Date(snippet.$updatedAt).toLocaleDateString('en-IN', { day: 'numeric' ,
                         month: 'long' , year: 'numeric' }) %>
-                        <% } else { %> Created: <%= snippet.created %>
+                        <% } else { %> Created: <%= snippet.$createdAt %>
                                 <% } %>
             </p>
 
@@ -22,6 +22,10 @@
                         #<%= tag %>
                     </a>
                     <% } %>
+            </p>
+
+            <p class="actions">
+                <a href="/edit/<%= snippet.$id %>">Edit</a>
             </p>
         </li>
         <% } %>
