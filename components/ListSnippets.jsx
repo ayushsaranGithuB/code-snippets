@@ -37,7 +37,9 @@ const ListSnippets = ({ snippets }) => {
             {snippets.map((snippet) => (
                 <li className="post" id={snippet.$id} key={snippet.$id}>
                     <h2 className="title">
-                        {snippet.title}
+                        <a href={"/single/" + snippet.$id}>
+                            {snippet.title}
+                        </a>
                         <a className="action" href={`/edit/${snippet.$id}`}>[Edit]</a>
                     </h2>
 
@@ -51,7 +53,7 @@ const ListSnippets = ({ snippets }) => {
                             {snippet.$updatedAt > snippet.$createdAt ? (
                                 <>Updated: {new Date(snippet.$updatedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</>
                             ) : (
-                                <>Created: {snippet.$createdAt}</>
+                                <>Created:  {new Date(snippet.$createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</>
                             )}
                         </p>
                         <p className="tags">

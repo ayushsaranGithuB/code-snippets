@@ -54,8 +54,8 @@ export default function SearchPage() {
             <Head>
                 <title>Code Snippets - Home</title>
             </Head>
+            <p className="centered"><a href="/">&laquo; Back to all Snippets</a></p>
             <SearchBox keyword={keyword} />
-
             <ListSnippets snippets={snippets} />
 
         </>

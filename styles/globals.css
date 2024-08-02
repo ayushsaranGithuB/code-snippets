@@ -47,6 +47,12 @@ a:hover {
   cursor: pointer;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #container {
   margin: 0px auto;
   padding: 20px;
@@ -122,6 +128,41 @@ header nav ul {
   border-color: var(--linkColor);
 }
 
+
+/* TAGLIST */
+
+ul.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0 0 30px;
+  margin: 20px 20px 30px;
+  column-gap: 10px;
+  row-gap: 20px;
+  border-bottom: 1px solid var(--highlightColor);
+  align-items: center;
+  justify-content: center;
+
+}
+
+.tags-list a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--highlightColor);
+  color: var(--highlightColor);
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.tags-list a:hover {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--highlightColor);
+  color: var(--background);
+  opacity: 1;
+}
+
 /*  SNIPPETS  */
 
 ul.posts-list {
@@ -145,10 +186,15 @@ ul.posts-list {
   padding-left: 36px;
 }
 
+.post h2 a {
+  color: inherit;
+}
+
 .post h2 a.action {
   font-size: 0.5em;
   margin-left: 20px;
   display: none;
+  color: var(--highlightColor);
 }
 
 .post:hover a.action {
@@ -159,7 +205,7 @@ ul.posts-list {
   margin: 0.8em 0;
   font-size: 0.8em;
   padding-left: 6px;
-  opacity: 0.3;
+  opacity: 0.5;
   display: flex;
   justify-content: space-between;
   transition: all 0.8s;
@@ -173,6 +219,12 @@ ul.posts-list {
 
 .post .meta p {
   margin: 0;
+}
+
+.post .tags {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
 }
 
 .tags a:hover {
