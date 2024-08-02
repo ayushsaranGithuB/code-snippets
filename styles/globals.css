@@ -81,7 +81,7 @@ header nav {
   background-color: var(--linkColor);
   border-radius: 6px;
   height: 40px;
-  padding: 0 12px;
+  padding: 0 16px 0 12px;
 }
 
 header nav .logo a {
@@ -277,6 +277,10 @@ footer {
   padding: 0px 0 0;
   border-top: 1px solid #475243;
   color: #475243;
+}
+
+footer a {
+  color: inherit;
 }
 
 footer .button {

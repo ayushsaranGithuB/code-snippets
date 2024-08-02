@@ -8,7 +8,7 @@ const Header = () => {
                     </div>
                     <ul>
                         <li>
-                            <a href="/create">(+) New_Snippet</a>
+                            <a href="/create">(+)New</a>
                         </li>
                     </ul>
                 </nav>

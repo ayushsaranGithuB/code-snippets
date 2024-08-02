@@ -9,7 +9,7 @@ const Footer = () => {
 
     return (
         <footer>
-            <p>Code Snippets. &copy; 2024</p>
+            <p>Code Snippets. &copy; 2024 - <a href="http://www.ayushsaran.info" target='_blank'>Ayush Saran</a></p>
             <LoginBtn />
         </footer>
     );
