@@ -35,6 +35,10 @@
     color: var(--foreground);
 }
 
+.input-form form textarea {
+    font-size: 0.9em;
+}
+
 .input-form button[type="submit"] {
     padding: 10px 20px;
     border: none;

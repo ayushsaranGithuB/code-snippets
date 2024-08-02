@@ -8,8 +8,7 @@ const CreatePage = () => {
     if (!session) {
         return (
             <>
-                <p>Please sign in to add a snippet</p>
-                <button onClick={() => signIn()}>Sign in</button>
+                <p className="centered">Please sign in to add a snippet</p>
             </>
         )
     }
