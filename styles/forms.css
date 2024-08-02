@@ -49,6 +49,19 @@
     cursor: pointer;
 }
 
+
+.delete button {
+    padding: 10px 20px;
+    border: 2px dashed #ff702d;
+    background-color: var(--background);
+    border-radius: 6px;
+    color: #ff702d;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin: 0 auto 40px;
+    display: block;
+}
+
 /* Login form */
 #login-form {
     max-width: 400px;

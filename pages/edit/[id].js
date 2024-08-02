@@ -1,6 +1,7 @@
 // Edit Snippet Page
 import Loader from "@/components/Loader";
 import { useSession, signIn, signOut } from "next-auth/react";
+import toast, { Toaster } from "react-hot-toast";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -44,15 +45,24 @@ export default function EditPage() {
     });
 
     if (response.ok) {
-      alert("Snippet updated successfully");
-      // console.log(data);
-      router.push("/");
+      toast.success("Snippet updated successfully. Redirecting...");
+      setTimeout(() => {
+        router.push("/single/" + id);
+      }, 2000);
     } else {
       console.error("Error:", response.statusText);
     }
   };
 
   const handleDelete = async () => {
+    // add a confirmation dialog
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this snippet?"
+    );
+    if (!confirmDelete) {
+      return;
+    }
+
     const data = {
       id: id,
     };
@@ -66,9 +76,10 @@ export default function EditPage() {
     });
 
     if (response.ok) {
-      alert("Snippet deleted successfully");
-      // console.log(data);
-      router.push("/");
+      toast.success("Snippet deleted successfully. Redirecting...");
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     } else {
       console.error("Error:", response.statusText);
     }
@@ -98,6 +109,7 @@ export default function EditPage() {
   return (
     <>
       <div className="input-form">
+        <Toaster />
         <form
           name="create-form"
           id="create-form"
@@ -133,6 +145,7 @@ export default function EditPage() {
       </div>
       <p className="delete">
         <button
+          className="delete"
           onClick={() => {
             handleDelete();
           }}

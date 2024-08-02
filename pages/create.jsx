@@ -1,5 +1,6 @@
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import { useRouter } from "next/router";
+import toast, { Toaster } from 'react-hot-toast';
 
 const CreatePage = () => {
     const router = useRouter();
@@ -40,8 +41,10 @@ const CreatePage = () => {
         });
 
         if (response.ok) {
-            alert('Snippet added successfully');
-            router.push('/');
+            toast.success('Snippet added successfully. Redirecting...');
+            setTimeout(() => {
+                router.push('/');
+            }, 3000);
         } else {
             console.error('Error:', response.statusText);
         }
@@ -51,6 +54,7 @@ const CreatePage = () => {
 
     return (<>
         <div className="input-form">
+            <Toaster />
             <form name="create-form" id="create-form" onSubmit={(e) => handleSubmit(e)}>
                 <label htmlFor="title">Title</label>
                 <input type="text" name="title" id="title" required />
